@@ -89,6 +89,43 @@
         background: #000;
         border-radius: 50%;
       }
+            /* 新增二维码模态框样式 */
+      .modal {
+        display: none; /* 默认隐藏 */
+        position: fixed;
+        z-index: 1000; /* 置于顶层 */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7); /* 半透明遮罩 */
+      }
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* 居中显示 */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .modal-content img {
+        max-width: 250px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #333;
+      }
+      .close:hover {
+        color: #007BFF;
+      }
     </style>
   </head>
   <body>
@@ -103,13 +140,16 @@
                     <p class="name" style="text-align: center;">
                       Pengfei Lyu (Lv) 吕鹏飞
                     </p>
-                    <p>I am a PhD student at the Faculty of Robot Science and Engineering, Northeastern University, China, supervised by <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a> and working with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Prof. Xiaosheng Yu</a>.</p>
-                    <p>I am also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse</a> and working with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://scholar.google.com/citations?hl=zh-CN&user=c9MzVo0AAAAJ&view_op=list_works&sortby=pubdate"> Dr. Jing Xia</a>.</p>
-                    <p>I am interested in computer vision and machine learning. Currently, I am working on multi-modal image processing for natural and medical images.</p>
+                    <p>I am a distinguished researcher at the College of Computer Science, Inner Mongolia University.
+                    <p>I received my Ph.D. at the Faculty of Robot Science and Engineering, Northeastern University, China, supervised by <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a> and working with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Prof. Xiaosheng Yu</a>.</p>
+                    <p>I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and working with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://scholar.google.com/citations?hl=zh-CN&user=c9MzVo0AAAAJ&view_op=list_works&sortby=pubdate"> Prof. Jing Xia</a>.</p>
+                    <p>I am interested in computer vision and machine learning. Currently, I am working on multimodal collaborative perception in the real world.</p>
                     <p style="text-align: center;">
                       <a href="mailto:lvpengfei1995@163.com">Email</a> &nbsp;/&nbsp;
                       <a href="https://scholar.google.com/citations?user=YESlYPwAAAAJ&hl">Scholar</a> &nbsp;/&nbsp;
                       <a href="https://github.com/JoshuaLPF/">Github</a>
+                      <a href="#wechat-modal" onclick="openModal()">Wechat</a> <!-- 新增Wechat链接 -->
+                    </p>
                     </p>
                   </td>
                   <td style="padding: 2.5%; width: 37%; max-width: 37%;">
@@ -222,8 +262,38 @@
             </div>
           </td>
         </tr>
-      </tbody>
-    </table>
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    <!-- 新增微信二维码模态框 -->
+    <div id="wechat-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img src="images/wechat.jpg" alt="Wechat QR Code"> <!-- 替换为你的微信二维码图片路径 -->
+        <p>Scan to add WeChat</p>
+      </div>
+    &lt;/div&gt;
+
+    <!-- 新增弹窗控制脚本 -->
+    <script>
+      // 打开模态框
+      function openModal() {
+        document.getElementById("wechat-modal").style.display = "block";
+      }
+      // 关闭模态框
+      function closeModal() {
+        document.getElementById("wechat-modal").style.display = "none";
+      }
+      // 点击遮罩层关闭模态框
+      window.onclick = function(event) {
+        const modal = document.getElementById("wechat-modal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      }
+    //   </tbody>
+    // </table>
   </body>
 </html>
+
 
