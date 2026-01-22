@@ -89,6 +89,11 @@
         background: #000;
         border-radius: 50%;
       }
+      /* 新增：让Academic Services里的每项单独成行 */
+      .services-item {
+        display: block;
+        margin-bottom: 5px; /* 可选：增加两行之间的间距 */
+      }
       /* 模态框通用样式（Email和WeChat共用） */
       .modal {
         display: none; /* 默认隐藏 */
@@ -256,8 +261,9 @@
             <hr>
             <h3><strong>Academic Services</strong></h3>
             <div class="services">
-              <span><strong>Area Chair:</strong> <a href="https://mp.weixin.qq.com/s/hGIJ4XZRZo5C3btYQ7cVog">2nd RoSeN</a></span>
-              <span><strong>Reviewer:</strong> TIP, TNNLS, TMM, TCSVT, TGRS, TIM, etc.</span>
+              <!-- 核心修改：给每个span添加services-item类，实现分行显示 -->
+              <span class="services-item"><strong>Area Chair:</strong> <a href="https://mp.weixin.qq.com/s/hGIJ4XZRZo5C3btYQ7cVog">2nd RoSeN</a></span>
+              <span class="services-item"><strong>Reviewer:</strong> TIP, TNNLS, TMM, TCSVT, TGRS, TIM, etc.</span>
             </div>
           </td>
         </tr>
@@ -314,5 +320,3 @@
     </script>
   </body>
 </html>
-
-
