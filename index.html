@@ -89,7 +89,7 @@
         background: #000;
         border-radius: 50%;
       }
-      /* 新增二维码模态框样式 */
+      /* 模态框通用样式（Email和WeChat共用） */
       .modal {
         display: none; /* 默认隐藏 */
         position: fixed;
@@ -113,6 +113,14 @@
       .modal-content img {
         max-width: 250px;
         height: auto;
+        margin-bottom: 10px;
+      }
+      .email-text {
+        font-size: 1.2em;
+        color: #333;
+        padding: 10px 20px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
         margin-bottom: 10px;
       }
       .close {
@@ -145,10 +153,11 @@
                     <p>I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and worked closely with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://scholar.google.com/citations?hl=zh-CN&user=c9MzVo0AAAAJ&view_op=list_works&sortby=pubdate"> Prof. Jing Xia</a>.</p>
                     <p>My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.</p>
                     <p style="text-align: center;">
-                      <a href="mailto:lyupengfei1995@outlook.com">Email</a> &nbsp;/&nbsp;
+                      <!-- 改造Email链接：触发弹窗而非跳转 -->
+                      <a href="#email-modal" onclick="openEmailModal()">Email</a> &nbsp;/&nbsp;
                       <a href="https://scholar.google.com/citations?user=YESlYPwAAAAJ&hl">Scholar</a> &nbsp;/&nbsp;
                       <a href="https://github.com/JoshuaLPF/">Github</a> &nbsp;/&nbsp;
-                      <a href="#wechat-modal" onclick="openModal()">WeChat</a>
+                      <a href="#wechat-modal" onclick="openWechatModal()">WeChat</a>
                     </p>
                   </td>
                   <td style="padding: 2.5%; width: 37%; max-width: 37%;">
@@ -250,39 +259,57 @@
               <span><strong>Reviewer:</strong> TIP, TMM, TCSVT, TGRS, etc.</span>
             </div>
           </td>
-        </tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
+        </tr>
+      </tbody>
+    </table>
 
-    <!-- 新增微信二维码模态框 -->
+    <!-- Email弹窗（新增） -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEmailModal()">&times;</span>
+        <p class="email-text">lyupengfei1995@outlook.com</p>
+        <p>Click to copy / Contact me via email</p>
+      </div>
+    </div>
+
+    <!-- 微信二维码弹窗 -->
     <div id="wechat-modal" class="modal">
       <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img src="images/wechat.jpg" alt="Wechat QR Code"&gt; <!-- 与你上传的二维码文件名一致 -->
+        <span class="close" onclick="closeWechatModal()">&times;</span>
+        <img src="images/wechat.jpg" alt="Wechat QR Code">
         <p>Scan to add WeChat</p>
-      </div&gt;
-    &lt;/div&gt;
+      </div>
+    </div>
 
-    <!-- 新增弹窗控制脚本 -->
+    <!-- 弹窗控制脚本（区分Email和WeChat） -->
     <script>
-      // 打开模态框
-      function openModal() {
+      // Email弹窗控制
+      function openEmailModal() {
+        document.getElementById("email-modal").style.display = "block";
+      }
+      function closeEmailModal() {
+        document.getElementById("email-modal").style.display = "none";
+      }
+
+      // WeChat弹窗控制
+      function openWechatModal() {
         document.getElementById("wechat-modal").style.display = "block";
       }
-      // 关闭模态框
-      function closeModal() {
+      function closeWechatModal() {
         document.getElementById("wechat-modal").style.display = "none";
       }
-      // 点击遮罩层关闭模态框
+
+      // 点击遮罩层关闭对应弹窗
       window.onclick = function(event) {
-        const modal = document.getElementById("wechat-modal");
-        if (event.target === modal) {
-          closeModal();
+        const emailModal = document.getElementById("email-modal");
+        const wechatModal = document.getElementById("wechat-modal");
+        if (event.target === emailModal) {
+          closeEmailModal();
+        }
+        if (event.target === wechatModal) {
+          closeWechatModal();
         }
       }
     </script>
   </body>
 </html>
-
-
-
