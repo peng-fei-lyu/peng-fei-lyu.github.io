@@ -1,337 +1,431 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="author" content="Pengfei Lyu (Lv)">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <title>Pengfei Lyu (Lv)</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 0;
-      }
-      table {
-        width: 100%;
-        max-width: 800px;
-        border: 0px;
-        border-spacing: 0px;
-        border-collapse: separate;
-        margin-right: auto;
-        margin-left: auto;
-      }
-      .name {
-        font-size: 2em;
-        margin-bottom: 0.5em;
-      }
-      a {
-        color: #007BFF;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      hr {
-        border: 1px solid #333;
-        margin: 20px 0;
-      }
-      h3 {
-        font-size: 1.2em;
-        font-weight: 400;
-        color: #333;
-        margin-bottom: 10px;
-      }
-      .publication {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 20px;
-      }
-      .publication::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.5em;
-        width: 6px;
-        height: 6px;
-        background: #000;
-        border-radius: 50%;
-      }
-      .project {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 20px;
-      }
-      .project::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.5em;
-        width: 6px;
-        height: 6px;
-        background: #000;
-        border-radius: 50%;
-      }
-      .services {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 20px;
-      }
-      .services::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.5em;
-        width: 6px;
-        height: 6px;
-        background: #000;
-        border-radius: 50%;
-      }
-      /* 新增：让Academic Services里的每项单独成行 */
-      .services-item {
-        display: block;
-        margin-bottom: 5px; /* 可选：增加两行之间的间距 */
-      }
-      /* 模态框通用样式（Email和WeChat共用） */
-      .modal {
-        display: none; /* 默认隐藏 */
-        position: fixed;
-        z-index: 1000; /* 置于顶层 */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.7); /* 半透明遮罩 */
-      }
-      .modal-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); /* 居中显示 */
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-      }
-      .modal-content img {
-        max-width: 250px;
-        height: auto;
-        margin-bottom: 10px;
-      }
-      .email-text {
-        font-size: 1.2em;
-        color: #333;
-        padding: 10px 20px;
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        margin-bottom: 10px;
-      }
-      .close {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 1.5em;
-        cursor: pointer;
-        color: #333;
-      }
-      .close:hover {
-        color: #007BFF;
-      }
-    </style>
-  </head>
-  <body>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <table>
-              <tbody>
-                <tr>
-                  <td style="padding: 2.5%; width: 63%; vertical-align: middle;">
-                    <p class="name" style="text-align: center;">
-                      Pengfei Lyu (Lv) 吕鹏飞
-                    </p>
-                    <p>I am a distinguished researcher at the College of Computer Science, Inner Mongolia University, working with <a href="https://ccs.imu.edu.cn/info/1020/1840.htm">Prof. Zhenwei Shi</a>.</p>
-                    <p>I received my Ph.D. from the Faculty of Robot Science and Engineering, Northeastern University, China, under the supervision of <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a>, and worked with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Prof. Xiaosheng Yu</a>.</p>
-                    <p>I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and worked closely with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://person.zju.edu.cn/xiajing"> Prof. Jing Xia</a>.</p>
-                    <p>My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.</p>
-                    <p style="text-align: center;">
-                      <!-- 改造Email链接：触发弹窗而非跳转 -->
-                      <a href="#email-modal" onclick="openEmailModal()">Email</a> &nbsp;/&nbsp;
-                      <a href="https://scholar.google.com/citations?user=YESlYPwAAAAJ&hl">Scholar</a> &nbsp;/&nbsp;
-                      <a href="https://github.com/JoshuaLPF/">Github</a> &nbsp;/&nbsp;
-                      <a href="#wechat-modal" onclick="openWechatModal()">WeChat</a>
-                    </p>
-                  </td>
-                  <td style="padding: 2.5%; width: 37%; max-width: 37%;">
-                    <a href="images/lyupengfei.jpg"><img style="width: 100%; max-width: 100%; object-fit: cover;" alt="profile photo" src="images/lyupengfei.jpg" class="hoverZoomLink"></a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <hr>
-            <h3><strong>Representative Publications</strong></h3>
-            <div class="publication">
-              <a href="https://ieeexplore.ieee.org/document/10982382">
-                <span class="papertitle">
-                  <strong>[TIP 2025] TwinsTNet: Broad-View Twins Transformer Network for Bi-Modal Salient Object Detection</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lyu,</strong> Xiaosheng Yu, Jianning Chi, Hao Wu, Chengdong Wu, Jagath C. Rajapakse
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>IEEE Transactions on Image Processing, 2025.</em></p>
-              <a href="https://github.com/JoshuaLPF/TwinsTNet/">[github]</a>
-            </div>
-            <div class="publication">
-              <a href="https://arxiv.org/abs/2411.18409">
-                <span class="papertitle">
-                  <strong>[TCSVT 2025] Deep Fourier-embedded Network for RGB and Thermal Salient Object Detection</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lyu,</strong> Xiaosheng Yu, Pak-Hei Yeung, Chengdong Wu, Jagath C. Rajapakse
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>IEEE Transactions on Circuits and Systems for Video Technology, 2025.</em></p>
-              <a href="https://github.com/JoshuaLPF/FreqSal/">[github]</a>
-              <a href="https://arxiv.org/abs/2411.18409">[arXiv]</a>
-            </div>
-            <div class="publication">
-              <a href="https://ieeexplore.ieee.org/document/10975009">
-                <span class="papertitle">
-                  <strong>[TGRS 2025] Efficient Fourier Filtering Network with Contrastive Learning for AAV-based Unaligned Bi-modal Salient Object Detection</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lyu,</strong> Pak-Hei Yeung, Xiaosheng Yu, Xiufei Cheng, Chengdong Wu, Jagath C. Rajapakse
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>IEEE Transactions on Geoscience and Remote Sensing, 2025.</em></p>
-              <a href="https://github.com/JoshuaLPF/AlignSal/">[github]</a>
-              <a href="https://arxiv.org/abs/2411.03728">[arXiv]</a>
-            </div>
-            <div class="publication">
-              <a href="https://arxiv.org/abs/2505.11909">
-                <span class="papertitle">
-                  <strong>[arXiv] Bridging the Inter-Domain Gap through Low-Level Features for Cross-Modal Medical Image Segmentation</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lyu,</strong> Pak-Hei Yeung, Xiaosheng Yu, Jing Xia, Jianning Chi, Chengdong Wu, Jagath C. Rajapakse
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>arXiv, 2025.</em></p>
-              <a href="https://github.com/JoshuaLPF/LowBridge/">[github]</a>
-              <a href="https://arxiv.org/abs/2505.11909">[arXiv]</a>
-            </div>
-            <div class="publication">
-              <a href="https://globals.ieice.org/en_transactions/fundamentals/10.1587/transfun.2021EAL2071/_p">
-                <span class="papertitle">
-                  <strong>Saliency detection via absorbing Markov chain with multi-level cues</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lv,</strong> Xiaosheng Yu, Jianning Chi, Chengdong Wu
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>IEICE Transactions on Fundamentals of Electronics, Communications and Computer Sciences, 2022.</em></p>
-            </div>
-            <div class="publication">
-              <a href="http://cjig.ijournals.cn/jig/ch/reader/view_abstract.aspx?file_no=20210920">
-                <span class="papertitle">
-                  <strong>Optic disc detection based on visual saliency in fundus image (视觉显著性的眼底图像视盘检测)</strong>
-                </span>
-              </a>
-              <br>
-              <strong>Pengfei Lyu,</strong> Ying Wang, Siqi Wang, Xiaosheng Yu, Chengdong Wu
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>Journal of Image and Graphics (中国图象图形学报), 2021.</em></p>
-            </div>
-            <hr>
-            <h3><strong>Funded Projects</strong></h3>
-            <div class="project">
-                <span class="projecttitle">
-                  <strong>Junma Plan High-Level Talent Recruitment Program</strong>
-                </span>
-              <br>
-              <strong>Pengfei Lyu,</strong>
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>Supported by the Inner Mongolia University, 2026.01-2031.01.</em></p>
-            </div>
-            <div class="project">
-                <span class="projecttitle">
-                  <strong>Doctoral Innovation Program -- "Information discrimination and modal fusion based multi-modal salient object detection in complex scenes"</strong>
-                </span>
-              <br>
-              <strong>Pengfei Lyu,</strong> Chengdong Wu
-              <br>
-              <p style="margin-top: 5px; margin-bottom: 5px;"><em>Supported by the Fundamental Research Funds for the Central Universities, Ministry of Education of China, 2023.01-2024.12.</em></p>
-            </div>
-            <hr>
-            <h3><strong>Academic Services</strong></h3>
-            <div class="services">
-              <!-- 核心修改：给每个span添加services-item类，实现分行显示 -->
-              <span class="services-item"><strong>Area Chair:</strong> <a href="https://mp.weixin.qq.com/s/hGIJ4XZRZo5C3btYQ7cVog">2nd RoSeN</a></span>
-              <span class="services-item"><strong>Reviewer:</strong> TIP, TNNLS, TMM, TCSVT, TGRS, TASE, TIM, etc.</span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Pengfei Lyu (Lv)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+  <title>Pengfei Lyu (Lv)</title>
+  <style>
+    /* 全局变量：浅色/深色模式切换 */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #2c3e50;
+      --card-bg: #f8f9fa;
+      --primary: #165DFF;
+      --border-color: #e5e7eb;
+      --shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --primary: #4d94ff;
+      --border-color: #333333;
+      --shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
 
-    <!-- Email弹窗（新增） -->
-    <div id="email-modal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeEmailModal()">&times;</span>
-        <p class="email-text">lyupengfei1995@outlook.com</p>
-        <p>Click to copy / Contact me via email</p>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    /* 全局平滑滚动 */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      padding: 2rem 1rem;
+    }
+
+    /* 页面容器 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* 个人信息头部 */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .info {
+      flex: 1;
+      min-width: 300px;
+    }
+    .avatar {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .avatar:hover {
+      transform: scale(1.03);
+    }
+
+    .name {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* 分割线 */
+    hr {
+      border: none;
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 2.5rem 0;
+    }
+
+    /* 标题样式 */
+    h3 {
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+
+    /* 卡片通用样式 */
+    .card {
+      background-color: var(--card-bg);
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0.8rem;
+      top: 1.4rem;
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* 期刊标签高亮 */
+    .tag {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      margin-right: 5px;
+      color: white;
+    }
+    .tag-tip { background-color: #e74c3c; }
+    .tag-tgrs { background-color: #2ecc71; }
+    .tag-tcsvt { background-color: #3498db; }
+    .tag-arxiv { background-color: #9b59b6; }
+
+    /* 学术服务单行显示 */
+    .services-item {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* 模态框样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 300px;
+    }
+    .modal-content img {
+      max-width: 250px;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    .email-text {
+      font-size: 1.2em;
+      padding: 1rem 1.5rem;
+      background-color: var(--bg-color);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    .close:hover {
+      color: var(--primary);
+    }
+
+    /* 回到顶部按钮 */
+    #backTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 45px;
+      height: 45px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow);
+      z-index: 999;
+    }
+    #backTop:hover {
+      background-color: #0047cc;
+    }
+
+    /* 深色模式切换按钮 */
+    #themeToggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <!-- 深色模式切换 -->
+  <button id="themeToggle">🌙 Dark Mode</button>
+  <!-- 回到顶部按钮 -->
+  <button id="backTop">↑</button>
+
+  <div class="container">
+    <!-- 头部信息 -->
+    <div class="header">
+      <div class="info">
+        <h1 class="name">Pengfei Lyu (Lv) 吕鹏飞</h1>
+        <p>I am a distinguished researcher at the College of Computer Science, Inner Mongolia University, working with <a href="https://ccs.imu.edu.cn/info/1020/1840.htm">Prof. Zhenwei Shi</a>.</p>
+        <p>I received my Ph.D. from the Faculty of Robot Science and Engineering, Northeastern University, China, under the supervision of <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a>, and worked with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Prof. Xiaosheng Yu</a>.</p>
+        <p>I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and worked closely with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://person.zju.edu.cn/xiajing"> Prof. Jing Xia</a>.</p>
+        <p>My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.</p>
+        <div class="links">
+          <a href="#email-modal" onclick="openEmailModal()">Email</a> &nbsp;/&nbsp;
+          <a href="https://scholar.google.com/citations?user=YESlYPwAAAAJ&hl">Scholar</a> &nbsp;/&nbsp;
+          <a href="https://github.com/JoshuaLPF/">Github</a> &nbsp;/&nbsp;
+          <a href="#wechat-modal" onclick="openWechatModal()">WeChat</a>
+        </div>
       </div>
+      <img src="images/lyupengfei.jpg" alt="profile photo" class="avatar">
     </div>
 
-    <!-- 微信二维码弹窗 -->
-    <div id="wechat-modal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeWechatModal()">&times;</span>
-        <img src="images/wechat.jpg" alt="Wechat QR Code">
-        <p>Scan to add WeChat</p>
-      </div>
+    <hr>
+
+    <!-- 论文 -->
+    <h3><strong>Representative Publications</strong></h3>
+    <div class="card">
+      <a href="https://ieeexplore.ieee.org/document/10982382">
+        <span class="papertitle"><strong>TwinsTNet: Broad-View Twins Transformer Network for Bi-Modal Salient Object Detection</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lyu,</strong> Xiaosheng Yu, Jianning Chi, Hao Wu, Chengdong Wu, Jagath C. Rajapakse
+      <br>
+      <p style="margin:5px 0;"><em><span class="tag tag-tip">TIP 2025</span> IEEE Transactions on Image Processing</em></p>
+      <a href="https://github.com/JoshuaLPF/TwinsTNet/">[github]</a>
+    </div>
+    <div class="card">
+      <a href="https://arxiv.org/abs/2411.18409">
+        <span class="papertitle"><strong>Deep Fourier-embedded Network for RGB and Thermal Salient Object Detection</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lyu,</strong> Xiaosheng Yu, Pak-Hei Yeung, Chengdong Wu, Jagath C. Rajapakse
+      <br>
+      <p style="margin:5px 0;"><em><span class="tag tag-tcsvt">TCSVT 2025</span> IEEE Transactions on Circuits and Systems for Video Technology</em></p>
+      <a href="https://github.com/JoshuaLPF/FreqSal/">[github]</a>
+      <a href="https://arxiv.org/abs/2411.18409">[arXiv]</a>
+    </div>
+    <div class="card">
+      <a href="https://ieeexplore.ieee.org/document/10975009">
+        <span class="papertitle"><strong>Efficient Fourier Filtering Network with Contrastive Learning for AAV-based Unaligned Bi-modal Salient Object Detection</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lyu,</strong> Pak-Hei Yeung, Xiaosheng Yu, Xiufei Cheng, Chengdong Wu, Jagath C. Rajapakse
+      <br>
+      <p style="margin:5px 0;"><em><span class="tag tag-tgrs">TGRS 2025</span> IEEE Transactions on Geoscience and Remote Sensing</em></p>
+      <a href="https://github.com/JoshuaLPF/AlignSal/">[github]</a>
+      <a href="https://arxiv.org/abs/2411.03728">[arXiv]</a>
+    </div>
+    <div class="card">
+      <a href="https://arxiv.org/abs/2505.11909">
+        <span class="papertitle"><strong>Bridging the Inter-Domain Gap through Low-Level Features for Cross-Modal Medical Image Segmentation</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lyu,</strong> Pak-Hei Yeung, Xiaosheng Yu, Jing Xia, Jianning Chi, Chengdong Wu, Jagath C. Rajapakse
+      <br>
+      <p style="margin:5px 0;"><em><span class="tag tag-arxiv">arXiv 2025</span></em></p>
+      <a href="https://github.com/JoshuaLPF/LowBridge/">[github]</a>
+      <a href="https://arxiv.org/abs/2505.11909">[arXiv]</a>
+    </div>
+    <div class="card">
+      <a href="https://globals.ieice.org/en_transactions/fundamentals/10.1587/transfun.2021EAL2071/_p">
+        <span class="papertitle"><strong>Saliency detection via absorbing Markov chain with multi-level cues</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lv,</strong> Xiaosheng Yu, Jianning Chi, Chengdong Wu
+      <br>
+      <p style="margin:5px 0;"><em>IEICE Transactions on Fundamentals, 2022.</em></p>
+    </div>
+    <div class="card">
+      <a href="http://cjig.ijournals.cn/jig/ch/reader/view_abstract.aspx?file_no=20210920">
+        <span class="papertitle"><strong>Optic disc detection based on visual saliency in fundus image (视觉显著性的眼底图像视盘检测)</strong></span>
+      </a>
+      <br>
+      <strong>Pengfei Lyu,</strong> Ying Wang, Siqi Wang, Xiaosheng Yu, Chengdong Wu
+      <br>
+      <p style="margin:5px 0;"><em>Journal of Image and Graphics (中国图象图形学报), 2021.</em></p>
     </div>
 
-    <!-- 弹窗控制脚本（区分Email和WeChat） -->
-    <script>
-      // Email弹窗控制
-      function openEmailModal() {
-        document.getElementById("email-modal").style.display = "block";
-      }
-      function closeEmailModal() {
-        document.getElementById("email-modal").style.display = "none";
-      }
+    <hr>
 
-      // WeChat弹窗控制
-      function openWechatModal() {
-        document.getElementById("wechat-modal").style.display = "block";
-      }
-      function closeWechatModal() {
-        document.getElementById("wechat-modal").style.display = "none";
-      }
+    <!-- 项目 -->
+    <h3><strong>Funded Projects</strong></h3>
+    <div class="card">
+      <span class="projecttitle"><strong>Junma Plan High-Level Talent Recruitment Program</strong></span>
+      <br>
+      <strong>Pengfei Lyu,</strong>
+      <br>
+      <p style="margin:5px 0;"><em>Supported by the Inner Mongolia University, 2026.01-2031.01.</em></p>
+    </div>
+    <div class="card">
+      <span class="projecttitle"><strong>Doctoral Innovation Program -- "Information discrimination and modal fusion based multi-modal salient object detection in complex scenes"</strong></span>
+      <br>
+      <strong>Pengfei Lyu,</strong> Chengdong Wu
+      <br>
+      <p style="margin:5px 0;"><em>Supported by the Fundamental Research Funds for the Central Universities, Ministry of Education of China, 2023.01-2024.12.</em></p>
+    </div>
 
-      // 点击遮罩层关闭对应弹窗
-      window.onclick = function(event) {
-        const emailModal = document.getElementById("email-modal");
-        const wechatModal = document.getElementById("wechat-modal");
-        if (event.target === emailModal) {
-          closeEmailModal();
-        }
-        if (event.target === wechatModal) {
-          closeWechatModal();
-        }
-      }
-    </script>
-  </body>
+    <hr>
+
+    <!-- 学术服务 -->
+    <h3><strong>Academic Services</strong></h3>
+    <div class="card">
+      <span class="services-item"><strong>Area Chair:</strong> <a href="https://mp.weixin.qq.com/s/hGIJ4XZRZo5C3btYQ7cVog">2nd RoSeN</a></span>
+      <span class="services-item"><strong>Reviewer:</strong> TIP, TNNLS, TMM, TCSVT, TGRS, TASE, TIM, etc.</span>
+    </div>
+  </div>
+
+  <!-- 邮箱弹窗 -->
+  <div id="email-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeEmailModal()">&times;</span>
+      <p class="email-text" id="emailAddr" onclick="copyEmail()">lyupengfei1995@outlook.com</p>
+      <p id="copyTip">Click to copy / Contact me via email</p>
+    </div>
+  </div>
+
+  <!-- 微信弹窗 -->
+  <div id="wechat-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeWechatModal()">&times;</span>
+      <img src="images/wechat.jpg" alt="Wechat QR Code">
+      <p>Scan to add WeChat</p>
+    </div>
+  </div>
+
+  <script>
+    // 邮箱弹窗
+    function openEmailModal() { document.getElementById("email-modal").style.display = "block"; }
+    function closeEmailModal() { document.getElementById("email-modal").style.display = "none"; }
+
+    // 微信弹窗
+    function openWechatModal() { document.getElementById("wechat-modal").style.display = "block"; }
+    function closeWechatModal() { document.getElementById("wechat-modal").style.display = "none"; }
+
+    // 点击遮罩关闭
+    window.onclick = function(event) {
+      const emailModal = document.getElementById("email-modal");
+      const wechatModal = document.getElementById("wechat-modal");
+      if (event.target === emailModal) closeEmailModal();
+      if (event.target === wechatModal) closeWechatModal();
+    }
+
+    // 🔥 一键复制邮箱
+    function copyEmail() {
+      const email = document.getElementById("emailAddr").innerText;
+      navigator.clipboard.writeText(email).then(() => {
+        document.getElementById("copyTip").innerText = "✅ Copied successfully!";
+        setTimeout(() => {
+          document.getElementById("copyTip").innerText = "Click to copy / Contact me via email";
+        }, 2000);
+      });
+    }
+
+    // 🔥 回到顶部
+    const backTopBtn = document.getElementById("backTop");
+    window.onscroll = function() {
+      backTopBtn.style.display = window.scrollY > 300 ? "flex" : "none";
+    };
+    backTopBtn.onclick = function() {
+      window.scrollTo(0, 0);
+    };
+
+    // 🔥 深色/浅色模式切换
+    const themeBtn = document.getElementById("themeToggle");
+    themeBtn.onclick = function() {
+      document.body.classList.toggle("dark-mode");
+      this.innerText = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    };
+  </script>
+</body>
 </html>
-
-
-
-
-
-
-
