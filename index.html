@@ -5,7 +5,7 @@
   <meta name="author" content="Pengfei Lyu (Lv)">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <title>🌍 Pengfei Lyu (Lv)</title>
+  <title>Pengfei Lyu (Lv)</title>
   <style>
     /* 全局变量：浅色/深色模式切换 */
     :root {
@@ -43,19 +43,6 @@
       color: var(--text-color);
       background-color: var(--bg-color);
       padding: 1rem 0.5rem;
-      /* 禁止鼠标选中粒子画布 */
-      cursor: default;
-    }
-
-    /* 鼠标粒子画布 */
-    #particleCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
     }
 
     .container {
@@ -97,16 +84,6 @@
       text-align: center;
     }
 
-    /* 打字机光标效果 */
-    .type-cursor {
-      border-right: 2px solid var(--primary);
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: var(--primary); }
-    }
-
     .links {
       text-align: center;
       margin-top: 1rem;
@@ -139,7 +116,7 @@
       display: inline-block;
     }
 
-    /* 卡片3D悬停效果 */
+    /* 卡片通用样式 */
     .card {
       background-color: var(--card-bg);
       padding: 1.2rem 1.5rem;
@@ -148,8 +125,6 @@
       margin-bottom: 1rem;
       position: relative;
       padding-left: 2rem;
-      transform-style: preserve-3d;
-      perspective: 1000px;
     }
     .card::before {
       content: "";
@@ -162,25 +137,8 @@
       border-radius: 50%;
     }
     .card:hover {
-      transform: translateY(-3px) rotateY(2deg);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    }
-
-    /* 论文点赞按钮 */
-    .like-btn {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .like-btn.active {
-      color: #ff4757;
-      transform: scale(1.2);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     /* 期刊标签高亮 */
@@ -322,6 +280,9 @@
       height: 100%;
       background: var(--bg-color);
       display: flex;
+      theight: 100%;
+      background: var(--bg-color);
+      display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
@@ -364,28 +325,9 @@
       margin-top: 1rem;
       font-size: 0.9em;
     }
-
-    /* 学术语录样式 */
-    .quote-box {
-      text-align: center;
-      padding: 1rem;
-      background: var(--card-bg);
-      border-radius: 8px;
-      margin: 1rem 0;
-      font-style: italic;
-      color: var(--primary);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .quote-box:hover {
-      transform: scale(1.01);
-    }
   </style>
 </head>
 <body>
-  <!-- 鼠标跟随粒子画布 -->
-  <canvas id="particleCanvas"></canvas>
-
   <!-- 页面加载动画 -->
   <div class="loader" id="loader">
     <div class="loader-circle"></div>
@@ -401,8 +343,10 @@
     <div class="header fade-in">
       <div class="info">
         <h1 class="name">Pengfei Lyu (Lv) 吕鹏飞</h1>
-        <!-- 打字机效果容器 -->
-        <p id="typeText"></p>
+        <p>🧑‍🔬 I am a Research Fellow at the College of Computer Science, Inner Mongolia University, and am affiliated with the Spatio-Temporal Intelligence Research Center, led by <a href="https://ccs.imu.edu.cn/info/1020/1840.htm">Prof. Zhenwei Shi</a>.</p>
+        <p>🎓 I received my Ph.D. from the Faculty of Robot Science and Engineering, Northeastern University, China, under the supervision of <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a>, and worked with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Dr. Xiaosheng Yu</a>.</p>
+        <p>✈️ I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and worked closely with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://person.zju.edu.cn/xiajing"> Dr. Jing Xia</a>.</p>
+        <p>🔍 My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.</p>
         <div class="links">
           <a href="#email-modal" onclick="openEmailModal()">📧 Email</a> &nbsp;/&nbsp;
           <a href="https://scholar.google.com/citations?user=YESlYPwAAAAJ&hl" target="_blank">📚 Scholar</a> &nbsp;/&nbsp;
@@ -415,15 +359,9 @@
 
     <hr class="fade-in">
 
-    <!-- 学术语录 -->
-    <div class="quote-box fade-in" onclick="refreshQuote()">📜 <span id="quoteText">加载中...</span></div>
-
-    <hr class="fade-in">
-
     <!-- 论文 -->
     <h3 class="fade-in"><strong>📄 Representative Publications</strong></h3>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="https://ieeexplore.ieee.org/document/10982382" target="_blank">
         <span class="papertitle"><strong>TwinsTNet: Broad-View Twins Transformer Network for Bi-Modal Salient Object Detection</strong></span>
       </a>
@@ -434,7 +372,6 @@
       <a href="https://github.com/JoshuaLPF/TwinsTNet/" target="_blank">[github]</a>
     </div>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="https://arxiv.org/abs/2411.18409" target="_blank">
         <span class="papertitle"><strong>Deep Fourier-embedded Network for RGB and Thermal Salient Object Detection</strong></span>
       </a>
@@ -446,7 +383,6 @@
       <a href="https://arxiv.org/abs/2411.18409" target="_blank">[arXiv]</a>
     </div>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="https://ieeexplore.ieee.org/document/10975009" target="_blank">
         <span class="papertitle"><strong>Efficient Fourier Filtering Network with Contrastive Learning for AAV-based Unaligned Bi-modal Salient Object Detection</strong></span>
       </a>
@@ -458,7 +394,6 @@
       <a href="https://arxiv.org/abs/2411.03728" target="_blank">[arXiv]</a>
     </div>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="https://arxiv.org/abs/2505.11909" target="_blank">
         <span class="papertitle"><strong>Bridging the Inter-Domain Gap through Low-Level Features for Cross-Modal Medical Image Segmentation</strong></span>
       </a>
@@ -470,7 +405,6 @@
       <a href="https://arxiv.org/abs/2505.11909" target="_blank">[arXiv]</a>
     </div>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="https://globals.ieice.org/en_transactions/fundamentals/10.1587/transfun.2021EAL2071/_p" target="_blank">
         <span class="papertitle"><strong>Saliency detection via absorbing Markov chain with multi-level cues</strong></span>
       </a>
@@ -480,7 +414,6 @@
       <p style="margin:5px 0;"><em><span class="tag tag-ieice">IEICE 2022</span> IEICE Transactions on Fundamentals</em></p>
     </div>
     <div class="card fade-in">
-      <button class="like-btn" onclick="toggleLike(this)">🤍</button>
       <a href="http://cjig.ijournals.cn/jig/ch/reader/view_abstract.aspx?file_no=20210920" target="_blank">
         <span class="papertitle"><strong>Optic disc detection based on visual saliency in fundus image (视觉显著性的眼底图像视盘检测)</strong></span>
       </a>
@@ -537,7 +470,7 @@
       </div>
     </div>
 
-    <!-- 极简访问统计 -->
+    <!-- 访问统计 -->
     <div class="visitor-count fade-in">
       👀✨ Total Visits: <span id="visit-count">0</span>
     </div>
@@ -571,7 +504,6 @@
   </div>
 
   <script>
-    // ==================== 原有功能 ====================
     // 邮箱弹窗
     function openEmailModal() { document.getElementById("email-modal").style.display = "block"; }
     function closeEmailModal() { document.getElementById("email-modal").style.display = "none"; }
@@ -580,7 +512,7 @@
     function openWechatModal() { document.getElementById("wechat-modal").style.display = "block"; }
     function closeWechatModal() { document.getElementById("wechat-modal").style.display = "none"; }
 
-    // 相册图片预览弹窗
+    // 图片预览弹窗+滚轮缩放
     let imgScale = 1;
     function openModal(src) {
       imgScale = 1;
@@ -588,9 +520,7 @@
       document.getElementById("modal-img").src = src;
       document.getElementById("modal-img").style.transform = `scale(${imgScale})`;
     }
-    function closeImgModal() {
-      document.getElementById("img-modal").style.display = "none";
-    }
+    function closeImgModal() { document.getElementById("img-modal").style.display = "none"; }
 
     // 图片滚轮缩放
     document.getElementById('modal-img').addEventListener('wheel', (e) => {
@@ -600,7 +530,7 @@
       e.target.style.transform = `scale(${imgScale})`;
     });
 
-    // 点击遮罩关闭
+    // 点击遮罩关闭弹窗
     window.onclick = function(event) {
       const emailModal = document.getElementById("email-modal");
       const wechatModal = document.getElementById("wechat-modal");
@@ -661,163 +591,11 @@
     localStorage.setItem('visitCount', visitCount);
     document.getElementById('visit-count').innerText = visitCount;
 
-    // ==================== 新增有趣功能 ====================
-    // 1. 自我介绍文字
-    const introText = `🧑‍🔬 I am a Research Fellow at the College of Computer Science, Inner Mongolia University, and am affiliated with the Spatio-Temporal Intelligence Research Center, led by Prof. Zhenwei Shi.
-🎓 I received my Ph.D. from the Faculty of Robot Science and Engineering, Northeastern University, China, under the supervision of Prof. Chengdong Wu, and worked with Dr. Xiaosheng Yu.
-✈️ I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by Prof. Jagath C. Rajapakse (IEEE Fellow) and worked closely with Dr. Pak-Hei Yeung and Dr. Jing Xia.
-🔍 My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.`;
-
-    // 2. 打字机效果
-    function typeWriter() {
-      const typeElement = document.getElementById('typeText');
-      let index = 0;
-      const speed = 30;
-      
-      function type() {
-        if (index < introText.length) {
-          typeElement.innerHTML += introText.charAt(index);
-          index++;
-          setTimeout(type, speed);
-        } else {
-          // 打字完成移除光标
-          document.querySelector('.type-cursor')?.remove();
-        }
-      }
-      type();
-    }
-
-    // 3. 鼠标跟随星光粒子
-    function initParticles() {
-      const canvas = document.getElementById('particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-      
-      let particles = [];
-      const mouse = { x: w/2, y: h/2, radius: 100 };
-
-      // 粒子类
-      class Particle {
-        constructor() {
-          this.x = Math.random() * w;
-          this.y = Math.random() * h;
-          this.size = Math.random() * 2 + 0.5;
-          this.speedX = Math.random() * 0.5 - 0.25;
-          this.speedY = Math.random() * 0.5 - 0.25;
-          this.color = document.body.classList.contains('dark-mode') ? '#4d94ff' : '#165DFF';
-        }
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          
-          // 边界反弹
-          if(this.x < 0 || this.x > w) this.speedX *= -1;
-          if(this.y < 0 || this.y > h) this.speedY *= -1;
-          
-          // 鼠标交互
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const distance = Math.sqrt(dx*dx + dy*dy);
-          if(distance < mouse.radius) {
-            const force = (mouse.radius - distance) / mouse.radius;
-            this.x -= dx * force * 0.15;
-            this.y -= dy * force * 0.15;
-          }
-        }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
-      }
-
-      // 创建粒子
-      function createParticles() {
-        particles = [];
-        for(let i=0; i<80; i++) particles.push(new Particle());
-      }
-
-      // 动画循环
-      function animate() {
-        ctx.clearRect(0,0,w,h);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animate);
-      }
-
-      // 鼠标监听
-      window.addEventListener('mousemove', (e) => {
-        mouse.x = e.x;
-        mouse.y = e.y;
-      });
-
-      // 窗口 resize
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-        createParticles();
-      });
-
-      createParticles();
-      animate();
-    }
-
-    // 4. 学术励志语录
-    const quotes = [
-      "Research is to see what everybody else has seen, and to think what nobody else has thought.",
-      "The best way to predict the future is to invent it.",
-      "Stay hungry, stay foolish.",
-      "Genius is 1% inspiration and 99% perspiration.",
-      "If I have seen further it is by standing on the shoulders of giants.",
-      "Research is creating new knowledge.",
-      "The only way to do great work is to love what you do.",
-      "Innovation distinguishes between a leader and a follower."
-    ];
-
-    function refreshQuote() {
-      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById('quoteText').innerText = randomQuote;
-    }
-
-    // 5. 论文点赞功能
-    function toggleLike(btn) {
-      btn.classList.toggle('active');
-      btn.innerText = btn.classList.contains('active') ? '❤️' : '🤍';
-      // 本地存储点赞状态
-      const likeStatus = Array.from(document.querySelectorAll('.like-btn')).map(b => b.classList.contains('active'));
-      localStorage.setItem('paperLikes', JSON.stringify(likeStatus));
-    }
-
-    // 加载点赞状态
-    function loadLikeStatus() {
-      const saved = localStorage.getItem('paperLikes');
-      if(saved) {
-        const status = JSON.parse(saved);
-        document.querySelectorAll('.like-btn').forEach((btn, i) => {
-          if(status[i]) {
-            btn.classList.add('active');
-            btn.innerText = '❤️';
-          }
-        });
-      }
-    }
-
-    // 6. 全局快捷键
+    // 全局快捷键
     document.addEventListener('keydown', (e) => {
-      switch(e.key.toLowerCase()) {
-        case 'd': themeBtn.click(); break; // D键切换深色模式
-        case 't': backTopBtn.click(); break; // T键回到顶部
-        case 'r': refreshQuote(); break; // R键刷新语录
-      }
-    });
-
-    // 初始化所有新功能
-    window.addEventListener('load', () => {
-      typeWriter();
-      initParticles();
-      refreshQuote();
-      loadLikeStatus();
+      const key = e.key.toLowerCase();
+      if(key === 'd') themeBtn.click();
+      if(key === 't') backTopBtn.click();
     });
   </script>
 </body>
