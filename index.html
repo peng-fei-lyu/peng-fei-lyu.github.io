@@ -42,13 +42,13 @@
       line-height: 1.7;
       color: var(--text-color);
       background-color: var(--bg-color);
-      /* ✅ 优化：减少页面留白 */
+      /* 优化：减少页面留白 */
       padding: 1rem 0.5rem;
     }
 
-    /* ✅ 优化：缩小左右留白，加宽页面容器 */
+    /* 🔥 优化：大幅加宽页面最大宽度，适配大屏 */
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
     }
@@ -271,7 +271,7 @@
       transform: translateY(-5px);
     }
 
-    /* ✅ 新增：页面加载动画 */
+    /* 页面加载动画 */
     .loader {
       position: fixed;
       top: 0;
@@ -302,7 +302,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ✅ 新增：滚动淡入动画 */
+    /* 滚动淡入动画 */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -313,7 +313,7 @@
       transform: translateY(0);
     }
 
-    /* ✅ 新增：访问统计样式 */
+    /* 访问统计样式 */
     .visitor-count {
       text-align: center;
       padding: 0.8rem;
@@ -325,8 +325,8 @@
   </style>
 </head>
 <body>
-  <!-- ✅ 新增：页面加载动画 -->
-  <div class="loader" id="loader">
+  <!-- 页面加载动画 -->
+  <div classloader" id="loader">
     <div class="loader-circle"></div>
   </div>
 
@@ -340,8 +340,7 @@
     <div class="header fade-in">
       <div class="info">
         <h1 class="name">Pengfei Lyu (Lv) 吕鹏飞</h1>
-        <!-- ✅ 新增：打字效果容器 -->
-        <p id="type-text"></p>
+        <p>I am a Research Fellow at the College of Computer Science, Inner Mongolia University, working with <a href="https://ccs.imu.edu.cn/info/1020/1840.htm">Prof. Zhenwei Shi</a>.</p>
         <p>I received my Ph.D. from the Faculty of Robot Science and Engineering, Northeastern University, China, under the supervision of <a href="http://www.rse.neu.edu.cn/2021/1223/c2275a208779/page.htm">Prof. Chengdong Wu</a>, and worked with <a href="http://www.rse.neu.edu.cn/2024/0906/c2274a267941/page.htm"> Dr. Xiaosheng Yu</a>.</p>
         <p>I was also a Joint PhD student at the College of Computing and Data Science, Nanyang Technological University, Singapore, supervised by <a href="https://personal.ntu.edu.sg/asjagath/">Prof. Jagath C. Rajapakse (IEEE Fellow)</a> and worked closely with <a href="https://pakheiyeung.github.io/"> Dr. Pak-Hei Yeung</a> and <a href="https://person.zju.edu.cn/xiajing"> Dr. Jing Xia</a>.</p>
         <p>My research interests include computer vision and machine learning, with a current focus on multimodal collaborative perception in real-world scenarios.</p>
@@ -468,7 +467,7 @@
       </div>
     </div>
 
-    <!-- ✅ 新增：极简访问统计（替代小地球，国内100%可用） -->
+    <!-- 极简访问统计 -->
     <div class="visitor-count fade-in">
       👀 Total Visits: <span id="visit-count">0</span>
     </div>
@@ -515,7 +514,9 @@
       document.getElementById("img-modal").style.display = "block";
       document.getElementById("modal-img").src = src;
     }
-    function closeImgModal() { document.getElementById("img-modal").style.display = "none"; }
+    function closeImgModal() {
+      document.getElementById("img-modal").style.display = "none";
+    }
 
     // 点击遮罩关闭
     window.onclick = function(event) {
@@ -554,29 +555,14 @@
       this.innerText = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
     }
 
-    // ✅ 新增：页面加载动画
+    // 页面加载动画
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
       }, 800);
     });
 
-    // ✅ 新增：动态打字效果
-    const typeText = "I am a Research Fellow at the College of Computer Science, Inner Mongolia University, working with Prof. Zhenwei Shi.";
-    const typeElement = document.getElementById('type-text');
-    let index = 0;
-    function typeWriter() {
-      if (index < typeText.length) {
-        typeElement.innerHTML += typeText.charAt(index);
-        index++;
-        setTimeout(typeWriter, 40);
-      }
-    }
-    window.onload = () => {
-      typeWriter();
-    };
-
-    // ✅ 新增：滚动淡入动画
+    // 滚动淡入动画
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -587,7 +573,7 @@
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
 
-    // ✅ 新增：本地访问统计（替代小地球）
+    // 本地访问统计
     let visitCount = localStorage.getItem('visitCount') || 0;
     visitCount = parseInt(visitCount) + 1;
     localStorage.setItem('visitCount', visitCount);
